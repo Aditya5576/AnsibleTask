@@ -1,0 +1,19 @@
+---
+- name: Install git and clone a repo
+  hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: installing git
+      yum:
+        name: git
+        state: present
+
+    - name: Cloning the repo
+      git:
+        repo: 'https://github.com/Aditya5576/Simple-Calculator.git'
+        dest: /home/ansible/simple-calculator
+        version: main
+        force: yes
+        update: yes
